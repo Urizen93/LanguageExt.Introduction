@@ -88,6 +88,7 @@ public sealed class EitherTransformations : CanPrintOutput
         WriteLine($"The sum is {sum}");
         
         // It can be done with regular linq syntax as well but is more cumbersome (you'll need to pass around value tuples)
+        // Once you get a grasp of it, composing because a piece of cake! This addresses our last concern
     }
 
     #region Irrelevant
