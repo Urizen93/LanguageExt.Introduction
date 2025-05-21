@@ -10,11 +10,11 @@ public sealed class TryCatches
 
     public TryCatches(IThrowingApi service) => _service = service;
 
-    public string? GetFormattedAddress()
+    public string? GetFormattedAddress(int customerId)
     {
         try
         {
-            var address = _service.GetAddress(1);
+            var address = _service.GetAddress(customerId);
             // format it somehow
             return address;
         }
@@ -27,7 +27,8 @@ public sealed class TryCatches
             // Imagine our app is supposed to return 409 on that. How do you communicate it to the controller?
             Console.WriteLine(ex);
             
-            // So you wrap it into your own exception class, hoping it will be handled on the controller level - you have no way of enforcing it
+            // So you wrap it into your own exception class, hoping it will be handled
+            // on the controller level - you have no way of enforcing it
             throw new ConflictException(ex);
         }
     }
