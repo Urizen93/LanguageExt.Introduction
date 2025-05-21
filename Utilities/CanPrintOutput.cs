@@ -9,5 +9,9 @@ public abstract class CanPrintOutput : Controller
 
     public CanPrintOutput(ITestOutputHelper output) => _output = output;
 
-    protected void WriteLine(object? value = null) => _output.WriteLine(value?.ToString() ?? string.Empty);
+    protected void WriteLine(object? value = null)
+    {
+        _output.WriteLine(value?.ToString() ?? string.Empty);
+        _output.WriteLine(string.Empty);
+    }
 }

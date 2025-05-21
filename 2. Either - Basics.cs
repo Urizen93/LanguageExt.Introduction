@@ -15,9 +15,9 @@ using NotFound = LanguageExt.Introduction.Models.NotFound;
 
 namespace LanguageExt.Introduction;
 
-public sealed class EitherExamples : CanPrintOutput
+public sealed class EitherBasics : CanPrintOutput
 {
-    public EitherExamples(ITestOutputHelper output) : base(output)
+    public EitherBasics(ITestOutputHelper output) : base(output)
     {
     }
 
@@ -54,7 +54,7 @@ public sealed class EitherExamples : CanPrintOutput
         Either<NotFound, MailAddress> result = service.GetEmail(clientId);
         WriteLine(result);
         
-        // Has direct access to the underlying value
+        // Restricts access to the underlying value
         // To get the value, you have to match it first!
         var stringResult = result.Match(
             email => $"Client {clientId} email is {email.Address}", // Note that the right value is matched first
@@ -85,7 +85,7 @@ public sealed class EitherExamples : CanPrintOutput
     [Theory,
      InlineData("42"),
      InlineData("something else")]
-    public void WaysToCollapseTheContext(string input)
+    public async Task WaysToCollapseTheContext(string input)
     {
         // Extracting a value from Either is called a collapse of the context
         // As a rule of thumb, try to keep the context as long as you can
@@ -100,7 +100,7 @@ public sealed class EitherExamples : CanPrintOutput
         
         // Match is one of the ways to collapse the context
         // Either not only cannot hold nulls, it cannot collapse to nulls as well
-        Assert.Throws<ValueIsNullException>(() => result.Match<string?>(_ => null, _ => null));
+        Assert.Throws<ResultIsNullException>(() => result.Match<string?>(_ => null, _ => null));
         
         // However, most of the collapsing methods have Unsafe versions.
         // Try to use it only on the borders of an application!
@@ -118,14 +118,20 @@ public sealed class EitherExamples : CanPrintOutput
         
         // IfLeft and IfRight also have overloads for conditional access
         result.IfRight(number => WriteLine($"Executed only in Right state, the number is {number}"));
-        
+
+        // Most methods also have async overloads!
+        var asyncCallResult = await result.MatchAsync(MakeApiRequest, _ => Guid.Empty);
+        WriteLine(asyncCallResult);
+
         // There are also less relevant methods like Do, Iter, etc.
-        
+
         // As you can see, a consumer has no way of "forgetting" to check a "bad" result
         // With that, our first concern is addressed
     }
-    
+
     #region Irrelevant
+
+    private static Task<Guid> MakeApiRequest(int value) => Task.FromResult(Guid.NewGuid());
 
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
     private sealed class ResultDataAttribute : AutoDataAttribute
@@ -144,7 +150,7 @@ public sealed class EitherExamples : CanPrintOutput
                 .GetEmail(Arg.Any<int>())
                 .Returns(isSuccess
                     ? fixture.Create<MailAddress>()
-                    : new Models.NotFound());
+                    : new NotFound());
 
             return fixture;
         }

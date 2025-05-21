@@ -11,6 +11,7 @@ public static class TheProblem
     /// 1. Signatures provide no feedback <see cref="IThrowingApi"/>
     /// 2. Try-catch on every level <see cref="TryCatches"/>
     /// 3. No compile-time safety <see cref="CompilerFailsToWarn"/>
+    /// 4. Not all the exceptions are meant to be handled
     public static void ExceptionsAsControlFlowTool()
     {
         // If exceptions are a bad tool to control the flow,
