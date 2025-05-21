@@ -4,7 +4,7 @@ using LanguageExt.Introduction.Examples;
 namespace LanguageExt.Introduction;
 
 [PublicAPI]
-public static class TheProblem
+public static class ExceptionBasedApproachProblem
 {
     // Conventional OOP uses exceptions for flow control
     // This leads to several issues:
