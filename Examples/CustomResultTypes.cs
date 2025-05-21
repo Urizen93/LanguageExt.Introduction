@@ -1,26 +1,28 @@
 ﻿using JetBrains.Annotations;
+using LanguageExt.Introduction.Services;
 
 namespace LanguageExt.Introduction.Examples;
 
 [PublicAPI]
-public sealed class CustomResultClasses
+public sealed class CustomResultTypes
 {
     private readonly IReturnResult _service;
 
-    public CustomResultClasses(IReturnResult service) => _service = service;
+    public CustomResultTypes(IReturnResult service) => _service = service;
 
     public string ValuesAreAccessibleWithoutAnyChecks()
     {
-        var result = _service.GetResult<string>();
+        OperationResult<string> result = _service.GetResult<string>();
 
         // Potential NRE or ignored error - we were supposed to check IsSuccess property
         // Everybody forgets to do so all the time
+        // Ideally, a consumer must be forced to handle a bad result or discard it implicitly
         return result.Value.Trim();
     }
 
     public OperationResult<string> HardToTransform()
     {
-        var result = _service.GetResult<string>();
+        OperationResult<string> result = _service.GetResult<string>();
 
         // Tedious, error-prone transformations
         return new OperationResult<string>(
@@ -35,11 +37,11 @@ public sealed class CustomResultClasses
     {
         // Composition is annoying and requires a lot of branching
         // Imagine there were more than two results!
-        var first = _service.GetResult<int>();
+        OperationResult<int> first = _service.GetResult<int>();
 
         if (!first.IsSuccess) return first;
         
-        var second = _service.GetResult<int>();
+        OperationResult<int> second = _service.GetResult<int>();
 
         if (second.IsSuccess)
             return new OperationResult<int>(

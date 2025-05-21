@@ -1,8 +1,9 @@
-﻿using Xunit.Abstractions;
+﻿using Microsoft.AspNetCore.Mvc;
+using Xunit.Abstractions;
 
 namespace LanguageExt.Introduction.Utilities;
 
-public abstract class CanPrintOutput
+public abstract class CanPrintOutput : Controller
 {
     private readonly ITestOutputHelper _output;
 

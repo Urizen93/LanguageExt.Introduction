@@ -19,9 +19,9 @@ public static class OperationResultAttempt
             value: 1);
     }
 
-    /// Let's take a look at what's exactly wrong with it <see cref="CustomResultClasses" />
+    /// Let's take a look at what's exactly wrong with it <see cref="CustomResultTypes" />
     public static void FailsToAchieveItsGoals()
     {
-        // The idea behind it is correct, though. If only there was a type which actually does all this...
+        // The idea behind it is correct, though. If only there was a type that actually does all of this...
     }
 }
