@@ -16,14 +16,15 @@ public sealed class EitherAsyncOverview : CanPrintOutput
         // There is also EitherAsync type
         // It is basically Task<Either<TLeft, TRight> with some additional flavour
 
-        EitherAsync<string, int> asyncResult = Task.FromResult(1);
+        EitherAsync<string, int> asyncResult = 1;
+        EitherAsync<string, int> _ = Task.FromResult(1); // Convertible from Task too!
         // Can be easily converted to Task<Either<...>>
         Task<Either<string, int>> taskEither = asyncResult.ToEither();
         // ... and back
         asyncResult = taskEither.ToAsync(); // this method is particularly useful by the way
 
         // Can be awaited
-        Either<string, int> _ = await asyncResult;
+        Either<string, int> __ = await asyncResult;
         
         // Cannot be printed as easily, though
         WriteLine(asyncResult);

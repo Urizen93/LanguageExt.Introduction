@@ -11,7 +11,7 @@ using NSubstitute;
 using Xunit;
 using Xunit.Abstractions;
 using HttpNotFound = Microsoft.AspNetCore.Http.HttpResults.NotFound;
-using NotFound = LanguageExt.Introduction.Models.NotFound;
+using NotFound = OneOf.Types.NotFound;
 
 namespace LanguageExt.Introduction;
 

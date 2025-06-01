@@ -33,25 +33,25 @@ public sealed class CustomResultTypes
                 : string.Empty);
     }
 
-    public OperationResult<int> DoesNotCompose()
-    {
-        // Composition is annoying and requires a lot of branching
-        // Imagine there were more than two results!
-        OperationResult<int> first = _service.GetResult<int>();
-
-        if (!first.IsSuccess) return first;
-        
-        OperationResult<int> second = _service.GetResult<int>();
-
-        if (second.IsSuccess)
-            return new OperationResult<int>(
-                true,
-                string.Empty,
-                first.Value + second.Value);
-            
-        return new OperationResult<int>(
-            false,
-            string.Join(", ", [first.Error, second.Error]),
-            default);
-    }
+    // public OperationResult<int> DoesNotCompose()
+    // {
+    //     // Composition is annoying and requires a lot of branching
+    //     // Imagine there were more than two results!
+    //     OperationResult<int> first = _service.GetResult<int>();
+    //
+    //     if (!first.IsSuccess) return first;
+    //     
+    //     OperationResult<int> second = _service.GetAnotherResult<int>();
+    //
+    //     if (second.IsSuccess)
+    //         return new OperationResult<int>(
+    //             true,
+    //             string.Empty,
+    //             first.Value + second.Value);
+    //         
+    //     return new OperationResult<int>(
+    //         false,
+    //         string.Join(", ", [first.Error, second.Error]),
+    //         default);
+    // }
 }

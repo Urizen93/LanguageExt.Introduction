@@ -28,8 +28,11 @@ public sealed class EitherNuances : CanPrintOutput
         WriteLine($"Values {firstValue} and {secondValue} are{(areEqual ? "" : " not")} equal");
         WriteLine($"It took {stopwatch.Elapsed} time to compute");
         
-        // Takes half a second on my machine during the first execution
-        // The reasons a complicated, the short answer is: don't use default Equals on Either
+        // Takes half a second on my machine during the first execution (for each different type)
+        // The reasons are complicated, the short answer is: don't use default Equals on Either
+        
+        // Supports equality with with it's members, unlike OneOf
+        Assert.True(first.Equals(firstValue));
         
         // If you actually want to check for equality, the simplest way will be to use the matching:
         areEqual = first.Match(

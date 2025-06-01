@@ -5,4 +5,6 @@ namespace LanguageExt.Introduction.Services;
 public interface IReturnResult
 {
     OperationResult<T> GetResult<T>();
+    
+    OperationResult<T> GetAnotherResult<T>();
 }

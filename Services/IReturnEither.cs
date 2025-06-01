@@ -1,6 +1,5 @@
-﻿using System.Net.Mail;
-using LanguageExt.Common;
-using LanguageExt.Introduction.Models;
+﻿using OneOf.Types;
+using System.Net.Mail;
 
 namespace LanguageExt.Introduction.Services;
 

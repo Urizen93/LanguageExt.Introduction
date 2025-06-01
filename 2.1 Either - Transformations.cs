@@ -2,15 +2,17 @@
 using AutoFixture;
 using AutoFixture.AutoNSubstitute;
 using AutoFixture.Xunit2;
-using LanguageExt.Common;
-using LanguageExt.Introduction.Models;
 using LanguageExt.Introduction.Services;
 using LanguageExt.Introduction.Utilities;
 using NSubstitute;
+using OneOf.Types;
 using Xunit;
 using Xunit.Abstractions;
+using Error = LanguageExt.Common.Error;
 
 namespace LanguageExt.Introduction;
+
+
 
 public sealed class EitherTransformations : CanPrintOutput
 {
