@@ -8,9 +8,9 @@ using Utilities;
 using Xunit;
 using Xunit.Abstractions;
 
-public sealed class EitherAndOneOf : CanPrintOutput
+public sealed class OneOfOverview : CanPrintOutput
 {
-    public EitherAndOneOf(ITestOutputHelper output) : base(output)
+    public OneOfOverview(ITestOutputHelper output) : base(output)
     {
     }
 
