@@ -11,6 +11,7 @@ public sealed class TryCatches
 
     public TryCatches(IThrowingApi service) => _service = service;
 
+    // With exception-based approach, compiler is of no help for us :(
     public string? GetFormattedAddress(int customerId)
     {
         try
