@@ -52,7 +52,7 @@ public sealed class OneOfOverview : CanPrintOutput
         OneOf<string, int> anotherStringOrInt = 1;
         Assert.True(stringOrInt.Equals(anotherStringOrInt));
         
-        // Does not have equality with with it's members, the following warning is righteous
+        // Does not have equality with it's members, the following warning is righteous
         // ReSharper disable once SuspiciousTypeConversion.Global
         Assert.False(stringOrInt.Equals(1));
     }
