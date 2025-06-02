@@ -4,11 +4,11 @@ using LanguageExt.Introduction.Examples;
 namespace LanguageExt.Introduction;
 
 [PublicAPI]
-public static class ExceptionBasedApproachProblem
+public static class ExceptionBasedApproach
 {
     // Conventional OOP uses exceptions for flow control
     // This leads to several issues:
-    /// 1. Signatures provide no feedback <see cref="IThrowingApi"/>
+    /// 1. Signatures provide no feedback <see cref="ExceptionThrowingService"/>
     /// 2. Try-catch on every level <see cref="TryCatches"/>
     /// 3. No compile-time safety <see cref="CompilerFailsToWarn"/>
     /// 4. Not all the exceptions are meant to be handled

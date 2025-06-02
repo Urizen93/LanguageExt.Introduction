@@ -1,5 +1,6 @@
 using JetBrains.Annotations;
-using LanguageExt.Introduction.Examples.Exceptions;
+using LanguageExt.Introduction.Exceptions;
+using LanguageExt.Introduction.Services;
 
 namespace LanguageExt.Introduction.Examples;
 
@@ -15,8 +16,8 @@ public sealed class TryCatches
         try
         {
             var address = _service.GetAddress(customerId);
-            // format it somehow
-            return address;
+            
+            return FormatAddress(address);
         }
         catch (ApiSpecificException ex)
         {
@@ -32,4 +33,6 @@ public sealed class TryCatches
             throw new ConflictException(ex);
         }
     }
+
+    private static string? FormatAddress(string? address) => address?.Trim();
 }

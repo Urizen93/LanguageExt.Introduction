@@ -1,4 +1,4 @@
-namespace LanguageExt.Introduction.Examples.Exceptions;
+namespace LanguageExt.Introduction.Exceptions;
 
 public sealed class ConflictException : Exception
 {
